@@ -1,3 +1,10 @@
+# Optimized by ci-cost (https://github.com/mariotavarez/ci-cost)
+# Applied 3 optimizations:
+# - [MEDIUM] 4 jobs clone the repo — consider artifact sharing
+# - [LOW] Use shallow clone in "tag" job
+# - [LOW] Use shallow clone in "build_images" job
+# Estimated savings: ~1 min/run
+#
 name: Release Stage 2 - Create Raspbian Homebridge Image using pi-gen
 run-name: Release Stage 2 - Create Raspbian Homebridge Image ${{ github.ref }} - ${{ inputs.run_name }}
 
@@ -133,7 +140,7 @@ jobs:
 
       - uses: actions/checkout@v7
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
 # https://stackoverflow.com/questions/72444103/what-does-running-the-multiarch-qemu-user-static-does-before-building-a-containe
 
